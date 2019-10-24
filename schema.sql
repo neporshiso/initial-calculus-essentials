@@ -13,8 +13,8 @@ CREATE TABLE categories (
 
 CREATE TABLE problems (
     id SERIAL PRIMARY KEY,
-    statement VARCHAR,
-    type VARCHAR,
+    statement VARCHAR, -- problem statement base64
+    type VARCHAR, -- truefalse, manual_ordered, manual_unordered
     answer_representation VARCHAR, -- for MathJax representation
     answer_value TEXT [], -- for comparison against user-submitted input
     solution VARCHAR,
