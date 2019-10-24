@@ -13,10 +13,11 @@ CREATE TABLE categories (
 
 CREATE TABLE problems (
     id SERIAL PRIMARY KEY,
-    problem_statement VARCHAR,
-    problem_type VARCHAR,
-    problem_answer VARCHAR,
-    problem_solution VARCHAR,
+    statement VARCHAR,
+    type VARCHAR,
+    answer_representation VARCHAR, -- for MathJax representation
+    answer_value VARCHAR, -- for comparison against user-submitted input
+    solution VARCHAR,
     category_id INTEGER REFERENCES categories(id)
 );
 
