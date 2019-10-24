@@ -1,0 +1,9 @@
+<h2>This is the problems view! Enjoy!</h2>
+
+<p>Try not to get too lost:</p>
+
+<ul>
+    ${data.map(problem => {
+    return `<li>${problem}</li>`
+    }).join('')}
+</ul>

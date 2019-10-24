@@ -16,7 +16,7 @@ CREATE TABLE problems (
     statement VARCHAR,
     type VARCHAR,
     answer_representation VARCHAR, -- for MathJax representation
-    answer_value VARCHAR, -- for comparison against user-submitted input
+    answer_value TEXT [], -- for comparison against user-submitted input
     solution VARCHAR,
     category_id INTEGER REFERENCES categories(id)
 );
