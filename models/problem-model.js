@@ -39,11 +39,11 @@ Hence, $a=3$, and $b=-5$.
 
 const sampleProblemCategoryId = 1;
 
-db.result(`
-INSERT INTO problems
-VALUES
-    (DEFAULT, '${Base64Encode(sampleProblemStatement)}', '${sampleProblemType}', '${Base64Encode(sampleProblemAnswerRepresentation)}', '{${sampleProblemAnswerValue.join()}}', '${Base64Encode(sampleProblemSolution)}', '${sampleProblemCategoryId}')
-`);
+// db.result(`
+// INSERT INTO problems
+// VALUES
+//     (DEFAULT, '${Base64Encode(sampleProblemStatement)}', '${sampleProblemType}', '${Base64Encode(sampleProblemAnswerRepresentation)}', '{${sampleProblemAnswerValue.join()}}', '${Base64Encode(sampleProblemSolution)}', '${sampleProblemCategoryId}')
+// `);
 
 class Problem {
     constructor(id, problemStatement) {
