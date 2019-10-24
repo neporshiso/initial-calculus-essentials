@@ -10,6 +10,7 @@ require('dotenv').config();
 
 const indexController = require('./routes/index-controller');
 const usersController = require('./routes/users-controller');
+const problemsController = require('./routes/problem-controller');
 
 const app = express();
 
@@ -33,5 +34,6 @@ app.use(session({
 
 app.use('/', indexController);
 app.use('/users', usersController);
+app.use('/problem', problemsController);
 
 module.exports = app;

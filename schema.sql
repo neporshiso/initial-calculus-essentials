@@ -1,8 +1,8 @@
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
-    email VARCHAR(50) NOT NULL,
-    password VARCHAR(30) NOT NULL
+    email VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(300) NOT NULL
 );
 
 CREATE TABLE categories (
@@ -16,7 +16,7 @@ CREATE TABLE problems (
     statement VARCHAR,
     type VARCHAR,
     answer_representation VARCHAR, -- for MathJax representation
-    answer_value VARCHAR, -- for comparison against user-submitted input
+    answer_value TEXT [], -- for comparison against user-submitted input
     solution VARCHAR,
     category_id INTEGER REFERENCES categories(id)
 );
