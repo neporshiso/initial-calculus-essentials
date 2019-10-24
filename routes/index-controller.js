@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const indexModel = require('../models/index.model');
+const indexModel = require('../models/index-model');
 
 router.get('/', function(req, res, next) {
-  res.render('index-template', {
+  res.render('template', {
     locals: {
       title: 'Welcome to the homepage!'
     },
