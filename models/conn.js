@@ -1,13 +1,13 @@
-// require('dotenv').config();
+require('dotenv').config();
 
 const pgp = require('pg-promise')({
     query: (e) => console.log(e.query)
 });
 
 const options = {
-    host: 'localhost',
-    port: 5432,
-    database: 'calculus_prep'
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    database: process.env.DB_NAME
 };
 
 const db = pgp(options);
