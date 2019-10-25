@@ -99,7 +99,7 @@ class Problem {
         const userAnswerArray = user_answer.split(" ");
         const userAnswerObj = this.convertArrayDataToObj(userAnswerArray);
 
-        let evaluation = "";
+        let evaluation = true;
 
         switch (problem_type) {
             case "manual_ordered":
