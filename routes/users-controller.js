@@ -33,6 +33,7 @@ router.get("/signup", async (req, res, next) => {
 router.post("/signup", async (req, res, next) => {
     const { username,
             email } = req.body;
+            const id = req.session.user_id
     
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);

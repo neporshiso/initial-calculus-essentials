@@ -1,4 +1,5 @@
-<b>problem </b>
+
+<b>problem</b>
 <ul>
         <li>
             ${statement}
@@ -7,3 +8,16 @@
             <!-- ${problem} -->
         </li>
 </ul>
+<br>
+<form action="/problem/answerCheck" method="POST">
+    <label>
+        Insert your answer
+        <input
+            type="text"
+            aria-placeholder="user_answer"
+            placeholder="Enter your answer"
+            name="user_answer"
+        />
+    </label>
+    <button type="submit">Submit</button>
+</form>
