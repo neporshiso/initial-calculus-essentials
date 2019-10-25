@@ -8,6 +8,8 @@ router.get('/', async function(req, res, next) {
     res.render('template', { 
     locals: {
         title: "Problems Page",
+        isLoggedIn: req.session.is_logged_in,
+        userName: req.session.username,
         data: problemData
     },
     partials: {

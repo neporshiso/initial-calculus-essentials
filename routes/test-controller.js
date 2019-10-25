@@ -9,7 +9,9 @@ const helperModel = require("../models/helper-model");
 router.get("/", async (req, res, next) => {
     res.render("template", {
         locals: {
-            title: "Testing User Answer Validation"
+            title: "Testing User Answer Validation",
+            isLoggedIn: req.session.is_logged_in,
+            userName: req.session.username
         },
         partials: {
             indexPartial: "test-partial"
