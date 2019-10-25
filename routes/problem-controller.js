@@ -31,6 +31,7 @@ router.get('/:id', async function(req, res, next) {
             locals: {
                 title: "Problem #" + problem.id,
                 problem: problem,
+                problem_id: id,
                 statement: problemModel.base64Decode(problem.statement),
                 solution: problemModel.base64Decode(problem.solution),
                 isLoggedIn: req.session.is_logged_in,
@@ -45,11 +46,13 @@ router.get('/:id', async function(req, res, next) {
     }
 });
 
-router.post("/answerCheck", async (req, res, next) => {
+router.post("/:id", async (req, res, next) => {
     const { user_answer } = req.body;
+    const id = req.params.id;
+
     const user_id = req.session.user_id;
 
-    const problem = await problemModel.getProblemById(4),
+    const problem = await problemModel.getProblemById(id),
         problem_answer = problem.answer_value,
         problem_type = problem.type;
 
@@ -72,9 +75,10 @@ router.post("/answerCheck", async (req, res, next) => {
 
     if (!!evaluation) {
         console.log("Answer was correct");
-        res.status(200).redirect("/problem");
+        res.status(200).redirect(`/problem/${id}`);
     } else {
-        res.status(500).redirect("/problem");
+        console.log("Answer was incorrect");
+        res.status(500).redirect(`/problem/${id}`);
     }
 });
 
