@@ -172,22 +172,6 @@ class Problem {
         return objAnswer;
     }
 
-    // Pulls the answer value from Problems Table
-    static async getArrayAnswer(id) {
-        // SQL starts counting from 1 instead of 0
-        try {
-            const response = await db.one(
-                `SELECT array_data FROM restaurants WHERE id = $1;`,
-                [id]
-            );
-            const arrayObj = response.array_data;
-            const convertedAnswer = this.convertArrayDataToObj(arrayObj);
-
-            return convertedAnswer;
-        } catch (err) {
-            return err.message;
-        }
-    }
 }
 
 module.exports = Problem;
