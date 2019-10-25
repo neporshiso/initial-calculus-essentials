@@ -1,10 +1,12 @@
-<h2>This is the problems view! Enjoy!</h2>
 
-<p>Try not to get too lost:</p>
-<br>
+<b>problem</b>
 <ul>
-    <p>The object below represents the problem.</p>
-    ${data}
+        <li>
+            ${statement}
+            <!-- ${problem.type} -->
+            ${solution}
+            <!-- ${problem} -->
+        </li>
 </ul>
 <br>
 <form action="/problem/answerCheck" method="POST">

@@ -1,23 +1,5 @@
 const db = require("./conn");
 
-const base64js = require("base64-js");
-const TextDecoder = require("text-encoder-lite").TextDecoderLite;
-const TextEncoder = require("text-encoder-lite").TextEncoderLite;
-
-function Base64Encode(str, encoding = "utf-8") {
-    var bytes = new (typeof TextEncoder === "undefined"
-        ? TextEncoderLite
-        : TextEncoder)(encoding).encode(str);
-    return base64js.fromByteArray(bytes);
-}
-
-function Base64Decode(str, encoding = "utf-8") {
-    var bytes = base64js.toByteArray(str);
-    return new (typeof TextDecoder === "undefined"
-        ? TextDecoderLite
-        : TextDecoder)(encoding).decode(bytes);
-}
-
 const sampleProblemStatement = String.raw`
 For $-\frac{\pi}{2}< x< \frac{\pi}{2}$, it follows that $\tan(x)\cos(x)=\sin(x)$.
 `;
@@ -37,19 +19,6 @@ $$
 $$
 `;
 const sampleProblemCategoryId = 3;
-// commenting this out because it kept inserting data 
-
-// db.result(`
-// INSERT INTO problems
-// VALUES
-//     (DEFAULT, '${Base64Encode(
-//         sampleProblemStatement
-//     )}', '${sampleProblemType}', '${Base64Encode(
-//     sampleProblemAnswerRepresentation
-// )}', '{${sampleProblemAnswerValue.join()}}', '${Base64Encode(
-//     sampleProblemSolution
-// )}', '${sampleProblemCategoryId}')
-// `);
 
 class Problem {
     constructor(
@@ -68,6 +37,27 @@ class Problem {
         this.answer_value = answer_value;
         this.solution = solution;
         this.category_id = category_id;
+    }
+
+
+    static base64Decode (str, encoding = 'utf-8') {
+        return Buffer.from(str, 'base64').toString('utf8')
+    }
+
+    static base64Encode(str, encoding = 'utf-8') {
+        return Buffer.from(str, 'utf8').toString('base64')
+    }
+
+    static async getProblemById(id) {
+        try {
+            const response = await db.one(
+                `SELECT * FROM problems WHERE id = $1;`,
+                [id]
+            );
+            return response;
+        } catch (err) {
+            return err.message;
+        }
     }
 
     static async getAll() {
