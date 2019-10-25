@@ -12,7 +12,7 @@ class User {
         return bcrypt.compareSync(this.password, hash);
     }
 
-    static async getAllAnswersById(userId) {
+    static async getAnswerCountById(userId) {
         try {
             const response = await db.one(`SELECT COUNT(*) FROM user_answers WHERE user_id=$1`, [userId]);
             console.log('response', response);

@@ -53,7 +53,7 @@ router.post("/:id", async (req, res, next) => {
     const { user_answer } = req.body;
     const id = req.params.id;
     const user_id = req.session.user_id;
-
+    
     const problem = await problemModel.getProblemById(id),
         problem_answer = problem.answer_value,
         problem_type = problem.type;
@@ -75,17 +75,45 @@ router.post("/:id", async (req, res, next) => {
     const answer = await userAnswerModel.getAnswer(user_id, id);
     const answerExist = !!answer.id;
 
-    answerExist
-        ? await userAnswer.updateAnswer()
-        : await userAnswer.createAnswer();
+    if (answerExist) {
+        await userAnswer.updateAnswer();
+    } else {
+        await userAnswer.createAnswer();
+        const answers = await userModel.getAnswerCountById(req.session.user_id);
+        req.session.answer_count = Number(answers.count);
+    }
 
     if (!!evaluation) {
         console.log("Answer was correct");
-        res.status(200).redirect(`/problem/${id}/answer`);
+        req.session.save(
+            () => res.status(200).redirect(`/problem/${id}/answer`)
+        );
     } else {
         console.log("Answer was incorrect");
-        res.status(200).redirect(`/problem/${id}/answer`);
+        req.session.save(
+            () => res.status(200).redirect(`/problem/${id}/answer`)
+        );
     }
 });
+
+router.get('/:id/answer', async (req, res, next) => {
+    const problem_id = req.params.id;
+    const problem = await problemModel.getProblemById(problem_id);
+    const totalProblemCount = await problemModel.getTotalProblemCount();
+
+    res.render('template', {
+        locals: {
+            title: "Problem #" + problem_id,
+            session: req.session,
+            problem_id: problem.id,
+            solution: problemModel.base64Decode(problem.solution),
+            answer_representation: problemModel.base64Decode(problem.answer_representation),
+            problemCount: totalProblemCount.count
+        },
+        partials: {
+            partial: "partial-answer"
+        }
+    });
+})
 
 module.exports = router;

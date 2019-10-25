@@ -55,7 +55,7 @@ router.post("/login", async (req, res, next) => {
     
     if (!! response.isValid) {
         const { id, username } = response;
-        const answers = await User.getAllAnswersById(id);
+        const answers = await User.getAnswerCountById(id);
         const problems = await Problem.getAll();
         req.session.answer_count = answers.count;
         req.session.problem_count = problems.length;
