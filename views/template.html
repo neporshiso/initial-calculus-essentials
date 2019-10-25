@@ -26,8 +26,8 @@
                 </h1>
                 <h2 class="subtitle">
                     ${!!session.is_logged_in ? `
-                        Welcome, ${session.username}!
-                        ${session.answer_count} of ${session.problem_count} problems completed! (${(session.answer_count / session.problem_count) * 100}%)
+                        Welcome, ${session.username}!<br>
+                        You have attempted ${(session.answer_count / session.problem_count) * 100}% of all problems (${session.answer_count} of ${session.problem_count}).
                         ` : `
                         <i>(not logged in)</i>
                     `}
