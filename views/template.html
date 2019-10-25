@@ -13,8 +13,8 @@
     <script type="text/javascript" async
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
         </script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
     <title>ICE | ${title}</title>
 </head>
 <body>
@@ -25,8 +25,9 @@
                     ${title}
                 </h1>
                 <h2 class="subtitle">
-                    ${!!isLoggedIn ? `
-                        Welcome, ${userName}!
+                    ${!!session.is_logged_in ? `
+                        Welcome, ${session.username}!
+                        ${session.answer_count} of ${session.problem_count} problems completed! (${(session.answer_count / session.problem_count) * 100}%)
                         ` : `
                         <i>(not logged in)</i>
                     `}
@@ -34,7 +35,7 @@
                 </div>
                 <nav class="menu--main">
                         <ul>
-                            ${!!isLoggedIn ? `
+                            ${!!session.is_logged_in ? `
                                 <li><a href="/problem">Problems</a></li>
                                 <li><a href="/users/logout">Logout</a></li>
                                 ` : `

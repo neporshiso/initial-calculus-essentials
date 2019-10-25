@@ -2,14 +2,14 @@ const express = require("express");
 const bcrypt = require('bcryptjs');
 const router = express.Router();
 
+const Problem = require('../models/problem-model')
 const User = require('../models/user-model');
 
 router.get("/login", async (req, res, next) => {
     res.render("template", {
         locals: {
             title: "Login",
-            isLoggedIn: req.session.is_logged_in,
-            userName: req.session.username
+            session: req.session
         },
         partials: {
             partial: "partial-login"
@@ -21,8 +21,7 @@ router.get("/signup", async (req, res, next) => {
     res.render("template", {
         locals: {
             title: "Sign Up",
-            isLoggedIn: req.session.is_logged_in,
-            userName: req.session.username
+            session: req.session
         },
         partials: {
             partial: "partial-signup"
@@ -53,13 +52,18 @@ router.post("/login", async (req, res, next) => {
     const { email, password } = req.body;
     const user = new User(null, email, password);
     const response = await user.login();
-
+    
     if (!! response.isValid) {
         const { id, username } = response;
+        const answers = await User.getAllAnswersById(id);
+        const problems = await Problem.getAll();
+        req.session.answer_count = answers.count;
+        req.session.problem_count = problems.length;
+        console.log('count', answers.count, problems.length);
         req.session.is_logged_in = true;
         req.session.username = username;
         req.session.user_id = id;
-        console.log('session', req.session);
+        // console.log('session', req.session);
         res.status(200).redirect('/')
     } else {
         res.sendStatus(401)

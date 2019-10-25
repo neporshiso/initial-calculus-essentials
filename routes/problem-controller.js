@@ -6,11 +6,12 @@ const problemModel = require("../models/problem-model"),
 
 router.get("/", async function(req, res, next) {
     if (req.session.is_logged_in) {
-        res.render("template", {
+        const problems = await problemModel.getAll();
+        res.render('template', {
             locals: {
                 title: "Problems!",
-                isLoggedIn: req.session.is_logged_in,
-                userName: req.session.username
+                session: req.session,
+                problems: problems
             },
             partials: {
                 partial: "problems-partial"
@@ -37,8 +38,7 @@ router.get("/:id", async function(req, res, next) {
                 answer: problemModel.base64Decode(problem.answer_representation),
                 statement: problemModel.base64Decode(problem.statement),
                 solution: problemModel.base64Decode(problem.solution),
-                isLoggedIn: req.session.is_logged_in,
-                userName: req.session.username
+                session: req.session
             },
             partials: {
                 partial: "problem-partial"
@@ -52,7 +52,6 @@ router.get("/:id", async function(req, res, next) {
 router.post("/:id", async (req, res, next) => {
     const { user_answer } = req.body;
     const id = req.params.id;
-
     const user_id = req.session.user_id;
 
     const problem = await problemModel.getProblemById(id),
