@@ -1,19 +1,5 @@
 const db = require('./conn');
 
-const base64js = require('base64-js');
-const TextDecoder = require('text-encoder-lite').TextDecoderLite;
-const TextEncoder = require('text-encoder-lite').TextEncoderLite;
-
-function Base64Encode(str, encoding = 'utf-8') {
-    var bytes = new (typeof TextEncoder === "undefined" ? TextEncoderLite : TextEncoder)(encoding).encode(str);        
-    return base64js.fromByteArray(bytes);
-}
-
-function Base64Decode(str, encoding = 'utf-8') {
-    var bytes = base64js.toByteArray(str);
-    return new (typeof TextDecoder === "undefined" ? TextDecoderLite : TextDecoder)(encoding).decode(bytes);
-}
-
 const sampleProblemStatement = String.raw`
 By completing the square, the polynomial $x^2-6x+4$ can be written in the form $(x-a)^2+b$. Express $a$ and $b$ as integers.
 `;
@@ -49,6 +35,27 @@ class Problem {
     constructor(id, problemStatement) {
         this.id = id;
         this.problemStatement = problemStatement;
+    }
+
+
+    static base64Decode (str, encoding = 'utf-8') {
+        return Buffer.from(str, 'base64').toString('utf8')
+    }
+
+    static base64Encode(str, encoding = 'utf-8') {
+        return Buffer.from(str, 'utf8').toString('base64')
+    }
+
+    static async getProblemById(id) {
+        try {
+            const response = await db.one(
+                `SELECT * FROM problems WHERE id = $1;`,
+                [id]
+            );
+            return response;
+        } catch (err) {
+            return err.message;
+        }
     }
 
     static async getAll() {
