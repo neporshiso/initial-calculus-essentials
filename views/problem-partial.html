@@ -1,9 +1,21 @@
 <h2>This is the problems view! Enjoy!</h2>
 
 <p>Try not to get too lost:</p>
-
+<br>
 <ul>
-    ${data.map(problem => {
-    return `<li>${problem}</li>`
-    }).join('')}
+    <p>The object below represents the problem.</p>
+    ${data}
 </ul>
+<br>
+<form action="/problem/answerCheck" method="POST">
+    <label>
+        Insert your answer
+        <input
+            type="text"
+            aria-placeholder="user_answer"
+            placeholder="Enter your answer"
+            name="user_answer"
+        />
+    </label>
+    <button type="submit">Submit</button>
+</form>
