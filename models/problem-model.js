@@ -22,30 +22,45 @@ const sampleProblemStatement = String.raw`
 For $-\frac{\pi}{2}< x< \frac{\pi}{2}$, it follows that $\tan(x)\cos(x)=\sin(x)$.
 `;
 
-const sampleProblemType = 'truefalse'; // manual_unordered truefalse
+const sampleProblemType = "truefalse"; // manual_unordered truefalse
 
 const sampleProblemAnswerRepresentation = String.raw`
 True
 `;
 
-const sampleProblemAnswerValue = ['T'];
+const sampleProblemAnswerValue = ["T"];
 
 const sampleProblemSolution = String.raw`
 Since $\tan(x)=\frac{\sin(x)}{\cos(x)}$ and $\cos(x)\neq0$ when $x\in(-\pi/2,\pi/2)$, we have the following:
 $$
 \tan(x)\cos(x)=\frac{\sin(x)}{\cos(x)}\cos(x)=\sin(x).
 $$
-`
+`;
 const sampleProblemCategoryId = 3;
+// commenting this out because it kept inserting data 
 
-db.result(`
-INSERT INTO problems
-VALUES
-    (DEFAULT, '${Base64Encode(sampleProblemStatement)}', '${sampleProblemType}', '${Base64Encode(sampleProblemAnswerRepresentation)}', '{${sampleProblemAnswerValue.join()}}', '${Base64Encode(sampleProblemSolution)}', '${sampleProblemCategoryId}')
-`);
+// db.result(`
+// INSERT INTO problems
+// VALUES
+//     (DEFAULT, '${Base64Encode(
+//         sampleProblemStatement
+//     )}', '${sampleProblemType}', '${Base64Encode(
+//     sampleProblemAnswerRepresentation
+// )}', '{${sampleProblemAnswerValue.join()}}', '${Base64Encode(
+//     sampleProblemSolution
+// )}', '${sampleProblemCategoryId}')
+// `);
 
 class Problem {
-    constructor(id, problemStatement, type, answer_representation, answer_value, solution, category_id) {
+    constructor(
+        id,
+        problemStatement,
+        type,
+        answer_representation,
+        answer_value,
+        solution,
+        category_id
+    ) {
         this.id = id;
         this.problemStatement = problemStatement;
         this.type = type;
@@ -86,12 +101,58 @@ class Problem {
             return err.message;
         }
     }
-    // This will need to be updated as the problem_answer will be an object from postgres and the user_answer will be a String
+
+    // The user needs to input answers with spaces in between values e.g x1 0.5 x2 -3
+    // answerCheck evaluates the user's answer from the form submission and evaluates depending upon the problem type and returns a boolean
     static answerCheck(problem_type, problem_answer, user_answer) {
-        const problemAnswerObj = this.convertArrayDataToObj(problem_answer)
-        console.log(problem_type)
-        console.log(problem_answer)
-        console.log(user_answer)
+        const problemAnswerObj = this.convertArrayDataToObj(problem_answer);
+        const userAnswerArray = user_answer.split(" ");
+        const userAnswerObj = this.convertArrayDataToObj(userAnswerArray);
+
+        let evaluation = "";
+
+        switch (problem_type) {
+            case "manual_ordered":
+                JSON.stringify(problemAnswerObj) ==
+                JSON.stringify(userAnswerObj)
+                    ? (evaluation = true)
+                    : (evaluation = false);
+
+                break;
+
+            case "manual_unordered":
+                let problemKeysArray = JSON.stringify(
+                    Object.keys(problemAnswerObj).sort()
+                );
+                let userKeysArray = JSON.stringify(
+                    Object.keys(userAnswerObj).sort()
+                );
+
+                let problemValuesArray = JSON.stringify(
+                    Object.values(problemAnswerObj).sort()
+                );
+                let userValuesArray = JSON.stringify(
+                    Object.values(userAnswerObj).sort()
+                );
+
+                problemKeysArray == userKeysArray &&
+                problemValuesArray == userValuesArray
+                    ? (evaluation = true)
+                    : (evaluation = false);
+
+                break;
+
+            // since truefalse is single value answer, we can use don't have to convert problemAnswerValue. Can just rely on the arguments passed in directly
+            case "truefalse":
+                problem_answer == user_answer
+                    ? (evaluation = true)
+                    : (evaluation = false);
+                break;
+
+            default:
+                console.err("The problem type is not valid.");
+        }
+        return evaluation;
     }
 
     // Helper Function that can convert an PSQL Array to JSON

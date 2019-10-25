@@ -22,7 +22,7 @@ router.get("/", async function(req, res, next) {
 router.post("/answerCheck", async (req, res, next) => {
     const { user_answer } = req.body;
 
-    const problem = await problemModel.getProblemById(1),
+    const problem = await problemModel.getProblemById(4),
         problem_answer = problem.answer_value,
         problem_type = problem.type;
     
