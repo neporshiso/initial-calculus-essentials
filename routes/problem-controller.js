@@ -76,9 +76,7 @@ router.post("/:id", async (req, res, next) => {
     const answerExist = !!answer.id;
 
     if (answerExist) {
-        const answers = await userModel.getAnswerCountById(req.session.user_id);
         await userAnswer.updateAnswer();
-        req.session.answer_count = Number(answers.count);
     } else {
         await userAnswer.createAnswer();
         const answers = await userModel.getAnswerCountById(req.session.user_id);
