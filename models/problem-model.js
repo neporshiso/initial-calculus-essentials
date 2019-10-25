@@ -48,6 +48,17 @@ class Problem {
         return Buffer.from(str, 'utf8').toString('base64')
     }
 
+    static async getTotalProblemCount() {
+        try {
+            const response = await db.one(`
+            SELECT COUNT (*) FROM problems;
+            `);
+            return response;
+        } catch(error) {
+            return error.message;
+        }
+    }
+
     static async getProblemById(id) {
         try {
             const response = await db.one(
