@@ -1,14 +1,16 @@
 
-<b>problem</b>
-<ul>
-        <li>
-            ${statement}
-            <!-- ${problem.type} -->
-            ${solution}
-            <!-- ${problem} -->
-        </li>
-</ul>
+<h1>Problem ${problem_id}</h1>
+<p>${statement}</p>
 <br>
+
+<h2>Answer</h2>
+<p>${answer}</p>
+<br>
+
+<h2>Solution</h2>
+<p>${solution}</p>
+<br>
+
 <form action="/problem/${problem_id}" method="POST">
     <label>
         Insert your answer
@@ -21,3 +23,6 @@
     </label>
     <button type="submit">Submit</button>
 </form>
+
+${Number(problem_id) > 1 && Number(problem_id) < problemCount ? `<a href="/problem/${Number(problem_id) - 1}">Previous</a><a href="/problem/${Number(problem_id) + 1}">Next</a>` : Number(problem_id) === 1 ? `<a href="/problem/${Number(problem_id) + 1}">Next</a>` : `<a href="/problem/${Number(problem_id) - 1}">Previous</a>`}
+

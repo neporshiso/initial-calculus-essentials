@@ -25,6 +25,7 @@ router.get('/:id', async function(req, res, next) {
     if (req.session.is_logged_in) {
         const id = req.params.id;
         const problem = await problemModel.getProblemById(id);
+        const totalProblemCount = await problemModel.getTotalProblemCount();
         /* convert to use problem.decode() */
         console.log('getting problem', problem);
         res.render('template', {
@@ -32,6 +33,8 @@ router.get('/:id', async function(req, res, next) {
                 title: "Problem #" + problem.id,
                 problem: problem,
                 problem_id: id,
+                problemCount: totalProblemCount.count,
+                answer: problemModel.base64Decode(problem.answer_representation),
                 statement: problemModel.base64Decode(problem.statement),
                 solution: problemModel.base64Decode(problem.solution),
                 isLoggedIn: req.session.is_logged_in,
