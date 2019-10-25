@@ -64,7 +64,7 @@ class Problem {
         try {
             const response = await db.query(`SELECT * FROM problems;`);
 
-            console.log(response);
+            // console.log(response);
 
             // for (let problem of response) {
             //     problem.problem_statement = Base64Decode(problem.problem_statement);
@@ -75,7 +75,7 @@ class Problem {
 
             return response;
         } catch (error) {
-            console.log("error.message");
+            console.log(error.message);
             return error.message;
         }
     }

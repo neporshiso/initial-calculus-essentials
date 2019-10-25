@@ -1,4 +1,6 @@
 <h3>Problems view!</h3>
 <ul>
-    <li><a href='/problem/1'>Problem #1</a></li>
+    ${problems.map((problem, a, i) => `
+        <li><a href='/problem/${problem.id}'>Problem #${problem.id}</a></li>
+    `).join('')}
 </ul>

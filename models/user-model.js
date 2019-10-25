@@ -12,6 +12,16 @@ class User {
         return bcrypt.compareSync(this.password, hash);
     }
 
+    static async getAllAnswersById(userId) {
+        try {
+            const response = await db.one(`SELECT COUNT(*) FROM user_answers WHERE user_id=$1`, [userId]);
+            console.log('response', response);
+            return response;
+        } catch (err) {
+            console.log(err.message);
+        }
+    }
+
     async login() {
         try {
             const response =  await db.one(
