@@ -18,6 +18,7 @@ router.get('/', async function(req, res, next) {
         res.sendStatus(401)
     }
 })
+
 router.get('/:id', async function(req, res, next) {
     if (req.session.is_logged_in) {
         const id = req.params.id;

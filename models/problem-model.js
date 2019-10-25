@@ -1,35 +1,24 @@
 const db = require('./conn');
 
 const sampleProblemStatement = String.raw`
-By completing the square, the polynomial $x^2-6x+4$ can be written in the form $(x-a)^2+b$. Express $a$ and $b$ as integers.
+For $-\frac{\pi}{2}< x< \frac{\pi}{2}$, it follows that $\tan(x)\cos(x)=\sin(x)$.
 `;
 
-const sampleProblemType = 'manual_ordered';
+const sampleProblemType = 'truefalse'; // manual_unordered truefalse
 
 const sampleProblemAnswerRepresentation = String.raw`
-$a=3, b=-5$
+True
 `;
 
-const sampleProblemAnswerValue = ['a', '3', 'b', '5'];
+const sampleProblemAnswerValue = ['T'];
 
 const sampleProblemSolution = String.raw`
-Consider the following:
-\begin{align*}
-x^2-6x+4
-&= (x^2-6x+9)+4-9 & \text{(add and subtract $(-6/2)^2$)}\\[0.5em]
-&= (x-3)^2-5 & \text{(factor)}\\[0.5em]
-&= (x-3)^2+(-5). & \text{(write in desired form)}
-\end{align*}
-Hence, $a=3$, and $b=-5$.
+Since $\tan(x)=\frac{\sin(x)}{\cos(x)}$ and $\cos(x)\neq0$ when $x\in(-\pi/2,\pi/2)$, we have the following:
+$$
+\tan(x)\cos(x)=\frac{\sin(x)}{\cos(x)}\cos(x)=\sin(x).
+$$
 `
-
-const sampleProblemCategoryId = 1;
-
-// db.result(`
-// INSERT INTO problems
-// VALUES
-//     (DEFAULT, '${Base64Encode(sampleProblemStatement)}', '${sampleProblemType}', '${Base64Encode(sampleProblemAnswerRepresentation)}', '{${sampleProblemAnswerValue.join()}}', '${Base64Encode(sampleProblemSolution)}', '${sampleProblemCategoryId}')
-// `);
+const sampleProblemCategoryId = 3;
 
 class Problem {
     constructor(id, problemStatement) {
@@ -61,6 +50,8 @@ class Problem {
     static async getAll() {
         try {
             const response = await db.query(`SELECT * FROM problems;`);
+
+            console.log(response);
 
             // for (let problem of response) {
             //     problem.problem_statement = Base64Decode(problem.problem_statement);
