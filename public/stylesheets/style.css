@@ -4,7 +4,24 @@ body {
 }
 
 a {
-    color: #00b7ff;
+  color: #00b7ff;
+}
+
+.answer-field {
+  padding: 5px 10px;
+  background-color: blanchedalmond;
+  border: 2px solid #8be3d2;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.solution-field {
+  padding: 5px 10px;
+  background-color: blanchedalmond;
+  border: 2px solid #8be3d2;
+  border-radius: 5px;
+  display: inline-block;
+  max-width: 700px;
 }
 
 #problems_container {
