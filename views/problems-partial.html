@@ -1,21 +1,15 @@
+<div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;">
 ${problems.map((problem, i, a) => `
-    ${i % 4 == 0 ? `
-        <div class="tile is-ancestor">
-            <div class="tile is-parent">
+    <div class="tile is-ancestor">
+            <a href="/problem/${problem.id}">
+            <div class="tile is-parent" style="width: 300px; max-height: 129px;">
                 <article class="tile is-child box">
-                    <p class="title">${problem.id}</p>
-                    <p class="subtitle">True</p>
+                    <p class="title"># ${problem.id}</p>
+                    <p class="subtitle">Category ${problem.category_id}</p>
                 </article>
             </div>
-
-    ` : `
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-                    <p class="title">${problem.id}</p>
-                    <p class="subtitle">False</p>
-                </article>
-            </div>
-        </div> 
-    `} 
-`).join('')}
+        </a>
+    </div> 
+    `).join('')}
+</div>
 
