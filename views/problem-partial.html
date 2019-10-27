@@ -16,5 +16,5 @@
     <button type="submit">Submit</button>
 </form>
 
-${Number(problem_id) > 1 && Number(problem_id) < problemCount ? `<a href="/problem/${Number(problem_id) - 1}">Previous</a><a href="/problem/${Number(problem_id) + 1}">Next</a>` : Number(problem_id) === 1 ? `<a href="/problem/${Number(problem_id) + 1}">Next</a>` : `<a href="/problem/${Number(problem_id) - 1}">Previous</a>`}
+${Number(problem_id) > 1 && Number(problem_id) < problemCount ? `<a class="button is-primary" href="/problem/${Number(problem_id) - 1}">Previous</a><a class="button is-primary" href="/problem/${Number(problem_id) + 1}">Next</a>` : Number(problem_id) === 1 ? `<a class="button is-primary" href="/problem/${Number(problem_id) + 1}">Next</a>` : `<a class="button is-primary" href="/problem/${Number(problem_id) - 1}">Previous</a>`}
 
