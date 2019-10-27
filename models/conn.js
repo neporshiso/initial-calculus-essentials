@@ -12,6 +12,6 @@ const options = {
 
 const db = pgp(options);
 
-console.log('>>>>> Database connection successful >>>>>>>>>> ');
+console.log('>>>>>>>>>>>>>>> Database connection successful >>>>>>>>>> ');
 
 module.exports = db;

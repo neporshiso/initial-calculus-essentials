@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({tex2jax: {
             inlineMath: [ ['$','$'] ], 
@@ -18,35 +21,38 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <title>ICE | ${title}</title>
 </head>
+
 <body>
     <section class="hero is-dark bold">
-            <div class="hero-body">
-                <div class="container">
+        <div class="hero-body">
+            <div class="container">
                 <h1 class="title">
                     ${title}
                 </h1>
                 <h2 class="subtitle">
                     ${!!session.is_logged_in ? `
-                        Welcome, ${session.username}!<br>
-                        You have attempted ${(session.answer_count / session.problem_count) * 100}% of all problems (${session.answer_count} of ${session.problem_count}).
-                        ` : `
-                        <i>(not logged in)</i>
+                    Welcome, ${session.username}!<br>
+                    You have attempted ${(session.answer_count / session.problem_count) * 100}% of all problems
+                    (${session.answer_count} of ${session.problem_count}).
+                    ` : `
+                    <i>(not logged in)</i>
                     `}
                 </h2>
-                </div>
-                <nav class="menu--main">
-                        <ul>
-                            ${!!session.is_logged_in ? `
-                                <li><a href="/problem">Problems</a></li>
-                                <li><a href="/users/logout">Logout</a></li>
-                                ` : `
-                                <li><a href="/users/login">Login</a></li>
-                                <li></li><a href="/users/signup">Signup</a></li>
-                            `}
-                        </ul>
-                    </nav>
             </div>
-            </section>
+            <nav class="menu--main">
+                <ul>
+                    ${!!session.is_logged_in ? `
+                    <li><a href="/problem">Problems</a></li>
+                    <li><a href="/users/logout">Logout</a></li>
+                    ` : `
+                    <li><a href="/users/login">Login</a></li>
+                    <li></li><a href="/users/signup">Signup</a></li>
+                    `}
+                </ul>
+            </nav>
+        </div>
+    </section>
     ${partial}
 </body>
+
 </html>
