@@ -114,7 +114,7 @@ class Problem {
 
             // since truefalse is single value answer, we can use don't have to convert problemAnswerValue. Can just rely on the arguments passed in directly
             case "truefalse":
-                problem_answer == user_answer
+                problem_answer == user_answer[0].toUpperCase()
                     ? (evaluation = true)
                     : (evaluation = false);
                 break;
