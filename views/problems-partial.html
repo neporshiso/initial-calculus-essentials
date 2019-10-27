@@ -1,8 +1,8 @@
-<div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;">
+<div class="container problem_tiles" >
 ${problems.map((problem, i, a) => `
     <div class="tile is-ancestor">
             <a href="/problem/${problem.id}">
-            <div class="tile is-parent" style="width: 300px; max-height: 129px;">
+            <div class="tile is-parent problem_items">
                 <article class="tile is-child box">
                     <p class="title"># ${problem.id}</p>
                     <p class="subtitle">Category ${problem.category_id}</p>
