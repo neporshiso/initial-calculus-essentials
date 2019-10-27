@@ -1,6 +1,14 @@
+<script src="/javascripts/answers.js"></script>
+
 <div>
     <h2>Problem # ${problem_id}</h2>
     <p>${answer_representation}</p>
-    <p>${solution}</p>
 </div>
-${Number(problem_id) > 1 && Number(problem_id) < problemCount ? `<a href="/problem/${Number(problem_id) - 1}">Previous</a><a href="/problem/${Number(problem_id) + 1}">Next</a>` : Number(problem_id) === 1 ? `<a href="/problem/${Number(problem_id) + 1}">Next</a>` : `<a href="/problem/${Number(problem_id) - 1}">Previous</a>`}
+
+
+<button class="button is-info is-rounded" id="toggle-solution"> Show Full Solution </button><br>
+<div class="solution-field" style="display: none;">
+    <p class="solution">${solution}</p>
+</div>
+
+${Number(problem_id) > 1 && Number(problem_id) < problemCount ? `<a class="button is-primary" href="/problem/${Number(problem_id) - 1}">Previous</a><a class="button is-primary" href="/problem/${Number(problem_id) + 1}">Next</a>` : Number(problem_id) === 1 ? `<a class="button is-primary" href="/problem/${Number(problem_id) + 1}">Next</a>` : `<a class="button is-primary" href="/problem/${Number(problem_id) - 1}">Previous</a>`}
