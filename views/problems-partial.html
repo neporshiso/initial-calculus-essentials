@@ -1,22 +1,29 @@
-<div class="container" id="problems_container">
-    ${problems.map((problem, i, a) => `
-    <div class="level">
-        <div class="level-item" id="problem_items">
-            <a a href="/problem/${problem.id}">
-                <div class="card" style="width: 100%;">
-                    <header class="card-header">
-                        <p class="card-header-title">
-                            Problem #${problem.id}
-                        </p>
-                    </header>
-                    <div class="card-content">
-                        <div class="content">
-                            Category #${problem.category_id}
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
+${problems.map((problem, i, a) => ` ${i % 3 = 0 ? `` : Number(problem_id) === 1
+    ? `` : ``}
+
+<div class="tile is-ancestor">
+    <div class="tile is-parent">
+        <article class="tile is-child box">
+            <p class="title">One</p>
+            <p class="subtitle">Subtitle</p>
+        </article>
     </div>
-    `).join('')}
+    <div class="tile is-parent">
+        <article class="tile is-child box">
+            <p class="title">Two</p>
+            <p class="subtitle">Subtitle</p>
+        </article>
+    </div>
+    <div class="tile is-parent">
+        <article class="tile is-child box">
+            <p class="title">Three</p>
+            <p class="subtitle">Subtitle</p>
+        </article>
+    </div>
+    <div class="tile is-parent">
+        <article class="tile is-child box">
+            <p class="title">Four</p>
+            <p class="subtitle">Subtitle</p>
+        </article>
+    </div>
 </div>
