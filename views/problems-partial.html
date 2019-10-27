@@ -1,6 +1,22 @@
-<h3>Problems view!</h3>
-<ul>
-    ${problems.map((problem, a, i) => `
-        <li><a href='/problem/${problem.id}'>Problem #${problem.id}</a></li>
+<div class="container" id="problems_container">
+    ${problems.map((problem, i, a) => `
+    <div class="level">
+        <div class="level-item" id="problem_items">
+            <a a href="/problem/${problem.id}">
+                <div class="card" style="width: 100%;">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            Problem #${problem.id}
+                        </p>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            Category #${problem.category_id}
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
     `).join('')}
-</ul>
+</div>
