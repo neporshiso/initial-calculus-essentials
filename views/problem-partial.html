@@ -1,20 +1,25 @@
-
-<h1>Problem ${problem_id}</h1>
-<p>${statement}</p>
-<br>
-
-<form action="/problem/${problem_id}" method="POST">
-    <label>
-        Insert your answer
-        <input
-            type="text"
-            aria-placeholder="user_answer"
-            placeholder="Enter your answer"
-            name="user_answer"
-        />
-    </label>
-    <button type="submit">Submit</button>
-</form>
-
-${Number(problem_id) > 1 && Number(problem_id) < problemCount ? `<a class="button is-primary" href="/problem/${Number(problem_id) - 1}">Previous</a><a class="button is-primary" href="/problem/${Number(problem_id) + 1}">Next</a>` : Number(problem_id) === 1 ? `<a class="button is-primary" href="/problem/${Number(problem_id) + 1}">Next</a>` : `<a class="button is-primary" href="/problem/${Number(problem_id) - 1}">Previous</a>`}
-
+<div class="card">
+    <div class="card-content">
+        <p class="title is-5">Problem ${problem_id}</p>
+        <p class="subtitle is-5">${statement}</p><br>
+        <form action="/problem/${problem_id}" method="POST">
+            <div class="field">
+                <label class="label title is-6">Your Answer</label>
+                <div class="control">
+                    <input class="input is-primary" type="text" aria-placeholder="user_answer" placeholder="Type your answer here" name="user_answer" required>
+                </div>
+            </div>
+            <button type="submit" class="button is-primary">Submit Answer</button>
+        </form>
+    </div>
+    <footer class="card-footer">
+        ${Number(problem_id) > 1 && Number(problem_id) < problemCount ? `<p class="card-footer-item"><span><a
+                    class="button is-primary" href="/problem/${Number(problem_id) - 1}">Problem ${Number(problem_id) - 1}</a></span></p>
+            <p class="card-footer-item"><span><a class="button is-primary"
+                        href="/problem/${Number(problem_id) + 1}">Problem ${Number(problem_id) + 1}</a></span></p>` : Number(problem_id) === 1 ? `<p class="card-footer-item"><span><a
+                        class="button is-primary" href="/problem/${Number(problem_id) + 1}">Problem ${Number(problem_id) + 1}</a></span></p>`
+            : `
+            <p class="card-footer-item"><span><a class="button is-primary"
+                        href="/problem/${Number(problem_id) - 1}">Problem ${Number(problem_id) - 1}</a></span></p>`}
+    </footer>
+</div>

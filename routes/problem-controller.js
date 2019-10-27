@@ -106,6 +106,7 @@ router.get('/:id/answer', async (req, res, next) => {
             title: "Problem #" + problem_id,
             session: req.session,
             problem_id: problem.id,
+            statement: problemModel.base64Decode(problem.statement),
             solution: problemModel.base64Decode(problem.solution),
             answer_representation: problemModel.base64Decode(problem.answer_representation),
             problemCount: totalProblemCount.count
