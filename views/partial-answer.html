@@ -1,25 +1,28 @@
 <script src="/javascripts/answers.js"></script>
 
-<div class="card">
-    <div class="card-content">
-        <p class="title is-5">Problem ${problem_id}</p>
-        <p class="subtitle is-5">${statement}</p><br>
-        <p class="title is-6">Answer</p>
-        <p class="subtitle is-6 answer-field">${answer_representation}</p><br>
-        <p class="title is-6">Solution</p>
-        <p class="button is-primary subtitle is-6 is-outlined" id="toggle-solution"> Show Full Solution </p><br>
-        <div class="solution-field" style="display: none;">
-            <p class="solution">${solution}</p>
+<div class="answer-container">
+    ${answer_correctness === true? `<div class="card answer-card" style="border: 2px dashed green;">` : `<div class="card answer-card" style="border: 2px dashed red;">`}
+        <div class="card-content">
+            <p class="title is-5">Problem ${problem_id}</p>
+            <p class="subtitle is-5">${statement}</p><br>
+            <p class="title is-6">Correct Answer</p>
+            <p class="subtitle is-6 answer-field">${answer_representation}</p><br>
+            <p class="title is-6">Solution</p>
+            <p class="button is-primary subtitle is-6 is-outlined" id="toggle-solution"> Show Full Solution </p><br>
+            <div class="solution-field" style="display: none;">
+                <p class="solution">${solution}</p>
+            </div>
         </div>
+        <footer class="card-footer">
+                ${Number(problem_id) > 1 && Number(problem_id) < problemCount ? `<p class="card-footer-item"><span><a
+                            class="button is-primary" href="/problem/${Number(problem_id) - 1}">Problem ${Number(problem_id) - 1}</a></span></p>
+                    <p class="card-footer-item"><span><a class="button is-primary"
+                                href="/problem/${Number(problem_id) + 1}">Problem ${Number(problem_id) + 1}</a></span></p>` : Number(problem_id) === 1 ? `<p class="card-footer-item"><span><a
+                                class="button is-primary" href="/problem/${Number(problem_id) + 1}">Problem ${Number(problem_id) + 1}</a></span></p>`
+                    : `
+                    <p class="card-footer-item"><span><a class="button is-primary"
+                                href="/problem/${Number(problem_id) - 1}">Problem ${Number(problem_id) - 1}</a></span></p>`}
+            </footer>
     </div>
-    <footer class="card-footer">
-            ${Number(problem_id) > 1 && Number(problem_id) < problemCount ? `<p class="card-footer-item"><span><a
-                        class="button is-primary" href="/problem/${Number(problem_id) - 1}">Problem ${Number(problem_id) - 1}</a></span></p>
-                <p class="card-footer-item"><span><a class="button is-primary"
-                            href="/problem/${Number(problem_id) + 1}">Problem ${Number(problem_id) + 1}</a></span></p>` : Number(problem_id) === 1 ? `<p class="card-footer-item"><span><a
-                            class="button is-primary" href="/problem/${Number(problem_id) + 1}">Problem ${Number(problem_id) + 1}</a></span></p>`
-                : `
-                <p class="card-footer-item"><span><a class="button is-primary"
-                            href="/problem/${Number(problem_id) - 1}">Problem ${Number(problem_id) - 1}</a></span></p>`}
-        </footer>
 </div>
+

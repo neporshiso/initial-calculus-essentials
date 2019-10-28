@@ -1,3 +1,11 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 body {
     /* padding: 50px; */
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -21,7 +29,7 @@ a {
     border: 2px solid #8be3d2;
     border-radius: 5px;
     display: inline-block;
-    max-width: 700px;
+    width: 100%;
 }
 
 .problem_tiles {
@@ -34,6 +42,25 @@ a {
 .problem_items {
     width: 300px;
     max-height: 129px;
+}
+
+.answer-submission {
+    max-width: 700px;
+}
+
+.answer-card,
+.problem-card {
+    max-width: 800px;
+    border: 3px solid #8BE3D2;
+    background-color: #f6f6f6;
+    border-radius: 10px;
+}
+
+.problem-container,
+.answer-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
 }
 
 .navbar-menu {
