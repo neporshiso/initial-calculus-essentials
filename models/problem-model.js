@@ -75,6 +75,10 @@ class Problem {
     // The user needs to input answers with spaces in between values e.g x1 0.5 x2 -3
     // answerCheck evaluates the user's answer from the form submission and evaluates depending upon the problem type and returns a boolean
     static answerCheck(problem_type, problem_answer, user_answer) {
+        console.log(problem_type, problem_answer, user_answer)
+        if (problem_type === 'truefalse') {
+            
+        }
         const problemAnswerObj = this.convertArrayDataToObj(problem_answer);
         const userAnswerArray = user_answer.split(" ");
         const userAnswerObj = this.convertArrayDataToObj(userAnswerArray);
@@ -114,7 +118,7 @@ class Problem {
 
             // since truefalse is single value answer, we can use don't have to convert problemAnswerValue. Can just rely on the arguments passed in directly
             case "truefalse":
-                problem_answer == user_answer[0].toUpperCase()
+                evaluation = problem_answer == user_answer[0]
                     ? (evaluation = true)
                     : (evaluation = false);
                 break;

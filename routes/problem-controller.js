@@ -62,7 +62,6 @@ router.get("/:id", async function(req, res, next) {
 
 router.post("/:id", async (req, res, next) => {
     const { user_answer } = req.body;
-    console.log(req.body)
     const id = req.params.id;
     const user_id = req.session.user_id;
     
@@ -70,8 +69,6 @@ router.post("/:id", async (req, res, next) => {
         problem_answer = problem.answer_value,
         problem_type = problem.type;
 
-
-    // evaluation needs interpreted answer values by now
     const evaluation = await problemModel.answerCheck(
         problem_type,
         problem_answer,
@@ -112,12 +109,17 @@ router.post("/:id", async (req, res, next) => {
 
 router.get('/:id/answer', async (req, res, next) => {
     const problem_id = req.params.id;
+    const user_id = req.session.user_id;
     const problem = await problemModel.getProblemById(problem_id);
     const totalProblemCount = await problemModel.getTotalProblemCount();
+    const answerResult = await userAnswerModel.getAnswer(user_id, problem_id);
+
+    console.log("IS THE ANSWER CORRECT? WELL ....", answerResult);
 
     res.render('template', {
         locals: {
             title: "Problem #" + problem_id,
+            answer_correctness: answerResult.is_correct,
             session: req.session,
             problem_id: problem.id,
             statement: problemModel.base64Decode(problem.statement),
