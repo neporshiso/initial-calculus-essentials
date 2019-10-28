@@ -54,6 +54,7 @@ class UserAnswer {
             return false;
         }
     }
+
 }
 
 module.exports = UserAnswer;

@@ -98,12 +98,17 @@ router.post("/:id", async (req, res, next) => {
 
 router.get('/:id/answer', async (req, res, next) => {
     const problem_id = req.params.id;
+    const user_id = req.session.user_id;
     const problem = await problemModel.getProblemById(problem_id);
     const totalProblemCount = await problemModel.getTotalProblemCount();
+    const answerResult = await userAnswerModel.getAnswer(user_id, problem_id);
+
+    console.log("IS THE ANSWER CORRECT? WELL ....", answerResult);
 
     res.render('template', {
         locals: {
             title: "Problem #" + problem_id,
+            answer_correctness: answerResult.is_correct,
             session: req.session,
             problem_id: problem.id,
             statement: problemModel.base64Decode(problem.statement),
