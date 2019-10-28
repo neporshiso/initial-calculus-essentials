@@ -1,25 +1,37 @@
 body {
-  /* padding: 50px; */
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    /* padding: 50px; */
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00b7ff;
+    color: #00b7ff;
 }
 
 .answer-field {
-  padding: 5px 10px;
-  background-color: blanchedalmond;
-  border: 2px solid #8be3d2;
-  border-radius: 5px;
-  display: inline-block;
+    padding: 5px 10px;
+    background-color: blanchedalmond;
+    border: 2px solid #8be3d2;
+    border-radius: 5px;
+    display: inline-block;
 }
 
 .solution-field {
-  padding: 5px 10px;
-  background-color: blanchedalmond;
-  border: 2px solid #8be3d2;
-  border-radius: 5px;
-  display: inline-block;
-  max-width: 700px;
+    padding: 5px 10px;
+    background-color: blanchedalmond;
+    border: 2px solid #8be3d2;
+    border-radius: 5px;
+    display: inline-block;
+    max-width: 700px;
+}
+
+.problem_tiles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.problem_items {
+    width: 300px;
+    max-height: 129px;
 }
