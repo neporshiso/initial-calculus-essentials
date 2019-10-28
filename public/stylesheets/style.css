@@ -50,3 +50,11 @@ a {
 .sign-up.card {
   width: 297px;
 }
+
+tr .category_padding {
+  padding: 10px 50px;
+}
+
+.table_size {
+  font-size: 1.25rem;
+}

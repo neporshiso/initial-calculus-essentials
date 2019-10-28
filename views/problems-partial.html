@@ -1,12 +1,12 @@
 <div class="container" style="display:flex; justify-content: center;">
 
 
-<table class="table is-hoverable is-striped is-bordered">
+<table class="table is-hoverable is-striped is-bordered table_size">
     <thead>
         <tr>
-            <th>Problem</th>
-            <th>Category</th>
-            <th>Status</th>
+            <th class="has-text-centered">Problem</th>
+            <th class="has-text-centered">Category</th>
+            <th class="has-text-centered">Status</th>
         </tr>
     </thead>
 
@@ -14,23 +14,23 @@
         ${categoryCombo.map((element, i, a) => 
             `
             <tr>
-                <td><a href="/problem/${element.problem_number}">${element.problem_number}</a></td>
+                <td class="has-text-centered"><a href="/problem/${element.problem_number}">${element.problem_number}</a></td>
 
-                <td>${element.category_name}</td>
+                <td class="category_padding">${element.category_name}</td>
                 ${element.is_correct ? `
-                    <td>
+                    <td class="has-text-centered">
                         <span class="icon has-text-success" title="You got this problem correct!">
                         <i class="fas fa-check-square"></i>
                         </span>
                     </td>
                       ` : (element.is_correct === false) ? `
-                            <td>
+                            <td class="has-text-centered">
                                 <span class="icon has-text-danger" title="You answered this problem incorrectly.">
                                 <i class="fas fa-ban"></i>
                                 </span>
                             </td>
                             ` : `
-                            <td>
+                            <td class="has-text-centered">
                                 <span class="icon has-text-warning" title="You have not attempted this problem.">
                                 <i class="fas fa-exclamation-triangle"></i>
                                 </span>
