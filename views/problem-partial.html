@@ -5,10 +5,23 @@
         <form action="/problem/${problem_id}" method="POST">
             <div class="field">
                 <label class="label title is-6">Your Answer</label>
-                <div class="control">
+            </div>
+            ${(problem.type === 'truefalse') ? `
+                <div class="select is-multiple">
+                    <select name="user_answer" style="width: 143px;" multiple size="2" required>
+                        <option value="1">True</option>
+                        <option value="0">False</option>
+                    </select>
+                </div>
+                <br>
+                
+            ` : (problem.type === 'manual_ordered' || problem.type === 'manual_unordered') ? `
+            <div class="control">
                     <input class="input is-primary" type="text" aria-placeholder="user_answer" placeholder="Type your answer here" name="user_answer" required>
                 </div>
-            </div>
+            ` : `
+                something broke
+            `}
             <button type="submit" class="button is-primary">Submit Answer</button>
         </form>
     </div>

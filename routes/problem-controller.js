@@ -51,6 +51,7 @@ router.get("/:id", async function(req, res, next) {
 
 router.post("/:id", async (req, res, next) => {
     const { user_answer } = req.body;
+    console.log(req.body)
     const id = req.params.id;
     const user_id = req.session.user_id;
     
@@ -58,6 +59,8 @@ router.post("/:id", async (req, res, next) => {
         problem_answer = problem.answer_value,
         problem_type = problem.type;
 
+
+    // evaluation needs interpreted answer values by now
     const evaluation = await problemModel.answerCheck(
         problem_type,
         problem_answer,
