@@ -1,1 +1,120 @@
-<p>This is the index partial (yay!) Wooho!</p>
+<nav class="level">
+        <!-- Left side -->
+        <div class="level-item">
+                        <div class="card sign-up">
+                            <header class="card-header">
+                                <p class="card-header-title is-centered">
+                                    Sign Up
+                                </p>
+                            </header>
+                            <div class="card-content">
+                                <form action="/users/signup" method="POST">
+                                    <div class="field">
+                                        <label class="label">Username (display name)</label>
+                                        <input
+                                            class="input is-rounded"
+                                            type="text"
+                                            aria-placeholder="Username"
+                                            placeholder="Enter Your Username"
+                                            name="username"
+                                        />
+                                    </div>
+            
+                                    <div class="field">
+                                        <label class="label">Email</label>
+                                        <input
+                                            class="input is-rounded"
+                                            type="email"
+                                            aria-placeholder="Email Address"
+                                            placeholder="Enter Your Email"
+                                            name="email"
+                                        />
+                                    </div>
+            
+                                    <div class="field">
+                                        <label class="label">Select a Password</label>
+                                        <input
+                                            class="input is-rounded"
+                                            type="password"
+                                            aria-placeholder="Set Your Password"
+                                            placeholder="Enter Your Password"
+                                            name="password"
+                                        />
+                                    </div>
+                                    <div class="field is-grouped is-grouped-centered">
+                                        <p class="control">
+                                            <button type="submit" class="button is-success">
+                                                Create my Account
+                                            </button>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                    </div>
+        </div>
+      <!-- <div class="level-item">
+            <div>a</div>
+            <div>b</div>
+        </div> -->
+        <!-- Right side -->
+        <div class="level-item">
+                        <div class="card">
+                            <header class="card-header">
+                                <p class="card-header-title is-centered">
+                                    Login
+                                </p>
+                            </header>
+                            <div class="card-content">
+                                <form action="/users/login" method="POST">
+                                    <div class="field">
+                                        <label class="label">Email</label>
+                                        <p class="control has-icons-left has-icons-right">
+                                            <input
+                                                class="input is-rounded"
+                                                type="email"
+                                                aria-placeholder="email"
+                                                placeholder="Enter Your Email"
+                                                name="email"
+                                            />
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-envelope"></i>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="field">
+                                        <label class="label">Password</label>
+                                        <p class="control has-icons-left">
+                                            <input
+                                                class="input is-rounded"
+                                                type="password"
+                                                aria-placeholder="Password"
+                                                placeholder="Enter your password"
+                                                name="password"
+                                            />
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-lock"></i>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="field is-grouped is-grouped-centered">
+                                        <p class="control">
+                                            <button type="submit" class="button is-success">
+                                                Login
+                                            </button>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                    </div>
+        </div>
+      </nav>
+      <!-- ${!! session.is_logged_in ? `
+    <b>logged in, dude!</b>
+    ` : `
+    <div class="container">
+            <div class="columns">
+
+                    
+                </div>
+            </div>
+`} -->
