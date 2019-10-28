@@ -1,5 +1,5 @@
 <div class="problem-container">
-    <div class="card problem-card">
+        <div class="card problem-card">
         <div class="card-content">
             <p class="title is-5">Problem ${problem_id}</p>
             <p class="subtitle is-5">${statement}</p><br>
@@ -25,6 +25,7 @@
                         `}
                 <button type="submit" class="button is-primary">Submit Answer</button>
             </form>
+            </div>
         </div>
         <footer class="card-footer">
             ${Number(problem_id) > 1 && Number(problem_id) < problemCount ? `<p class="card-footer-item"><span><a
