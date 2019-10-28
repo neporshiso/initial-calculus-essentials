@@ -1,15 +1,30 @@
-<div class="container problem_tiles" >
-${problems.map((problem, i, a) => `
-    <div class="tile is-ancestor">
-            <a href="/problem/${problem.id}">
-            <div class="tile is-parent problem_items">
-                <article class="tile is-child box">
-                    <p class="title"># ${problem.id}</p>
-                    <p class="subtitle">Category ${problem.category_id}</p>
-                </article>
-            </div>
-        </a>
-    </div> 
-    `).join('')}
-</div>
+<div class="container" style="display:flex; justify-content: center;">
 
+
+<table class="table is-hoverable">
+    <thead>
+        <tr>
+            <th>Problem Number</th>
+            <th>Category Name</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        ${categoryCombo.map((element, i, a) => 
+            `
+            <tr>
+                <td><a href="/problem/${element.problem_number}">${element.problem_number}</a></td>
+                <td>${element.category_name}</td>
+                ${element.is_correct ? `<td><span class="icon has-text-success">
+                        <i class="fas fa-check-square"></i>
+                      </span></td>` : (element.is_correct === false) ? `<td><span class="icon has-text-danger">
+                        <i class="fas fa-ban"></i>
+                      </span></td>` : `<td><span class="icon has-text-warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                          </span></td>`} 
+            </tr>
+            `).join('')}
+    </tbody>
+</table>
+</div>
