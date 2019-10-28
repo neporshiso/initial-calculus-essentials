@@ -29,27 +29,41 @@ router.get("/signup", async (req, res, next) => {
     });
 });
 
+router.get("/signup/error", async (req, res, next) => {
+    res.render("template", {
+        locals: {
+            title: "Sign Up",
+            session: req.session,
+        },
+        partials: {
+            partial: "partial-signup-error"
+        }
+    });
+});
+
 router.post("/signup", async (req, res, next) => {
     const { username,
             email } = req.body;
             const id = req.session.user_id
-    
+
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
     const user = new User(username, email, hash);
 
     const addUser = await user.save();
-    console.log(addUser);
-    if (addUser) {
-        res.status(200).redirect('/users/login');
+
+    if (addUser.name === 'error' && addUser.code === '23505') {
+        res.status(500).redirect('/users/signup/error');
     } else {
-        res.status(500);
+        res.status(200).redirect('/users/login');
     }
 });
 
 router.post("/login", async (req, res, next) => {
+
     const { email, password } = req.body;
+
     const user = new User(null, email, password);
     const response = await user.login();
     

@@ -60,7 +60,7 @@ class User {
                 console.log('saving user: ', response)
                 return response;
         } catch (err) {
-            return err.message;
+            return err;
         }
     }
 }
