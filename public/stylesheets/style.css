@@ -35,3 +35,18 @@ a {
     width: 300px;
     max-height: 129px;
 }
+
+.navbar-menu {
+  /* transition: all .5s; */
+  margin-bottom: 50px;
+  background-color: #8be3d2;
+  border-bottom: 1px black;
+}
+
+.navbar-item {
+  font-size: 20px;
+}
+
+.sign-up.card {
+  width: 297px;
+}
