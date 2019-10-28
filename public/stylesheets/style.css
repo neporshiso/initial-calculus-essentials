@@ -77,3 +77,20 @@ a {
 .sign-up.card {
   width: 297px;
 }
+
+tbody tr {
+  cursor: pointer;
+}
+
+tr .category_padding {
+  padding: 10px 50px;
+}
+
+.table_size {
+  font-size: 1.25rem;
+}
+
+.table_container {
+  display:flex; 
+  justify-content: center;
+}
