@@ -2,16 +2,27 @@ const express = require("express");
 const router = express.Router();
 const problemModel = require("../models/problem-model"),
     userModel = require("../models/user-model"),
-    userAnswerModel = require("../models/userAnswer-model");
+    userAnswerModel = require("../models/userAnswer-model"),
+    categoryModel = require("../models/category-model")
 
 router.get("/", async function(req, res, next) {
     if (req.session.is_logged_in) {
-        const problems = await problemModel.getAll();
+        // const problems = await problemModel.getAll();
+        const categoryAndProblems = await categoryModel.joinProblemsAndCategories();
+        const userAnswers = await categoryModel.getUserAnswers(req.session.user_id);
+
+        userAnswers.forEach(element => {
+            categoryAndProblems[element.problem_id - 1].is_correct = element.is_correct;
+        });
+
+        console.log("PROBLEMS AND CATEGORIES", categoryAndProblems)
+        console.log("CURRENT USER ANSWERS", userAnswers)
+
         res.render('template', {
             locals: {
                 title: "Problems!",
                 session: req.session,
-                problems: problems
+                categoryCombo: categoryAndProblems
             },
             partials: {
                 partial: "problems-partial"
