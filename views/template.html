@@ -17,41 +17,53 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
         </script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script type="text/javascript" src="/javascripts/header.js"></script>
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <title>ICE | ${title}</title>
 </head>
 
 <body>
-    <section class="hero is-dark bold">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">
-                    ${title}
-                </h1>
-                <h2 class="subtitle">
-                    ${!!session.is_logged_in ? `
-                    Welcome, ${session.username}!<br>
-                    You have attempted ${(session.answer_count / session.problem_count) * 100}% of all problems
-                    (${session.answer_count} of ${session.problem_count}).
-                    ` : `
-                    <i>(not logged in)</i>
-                    `}
-                </h2>
-            </div>
-            <nav class="menu--main">
-                <ul>
-                    ${!!session.is_logged_in ? `
-                    <li><a href="/problem">Problems</a></li>
-                    <li><a href="/users/logout">Logout</a></li>
-                    ` : `
-                    <li><a href="/users/login">Login</a></li>
-                    <li></li><a href="/users/signup">Signup</a></li>
-                    `}
-                </ul>
-            </nav>
-        </div>
-    </section>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+              
+                  <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarC">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                  </a>
+                </div>
+              
+                <div id="navbarC" class="navbar-menu">
+                  <div class="navbar-start">
+                    <a href="/" class="navbar-item">
+                      Home
+                    </a>
+                    
+                    ${session.is_logged_in ? `
+                        <a href="/problem" class="navbar-item">
+                            Problems
+                        </a>
+                        ` : `
+                        
+                        `}
+                  </div>
+
+                  <div class="navbar-end">
+                    <div class="navbar-item">
+                      <div class="buttons">
+                                ${!!session.is_logged_in ? `
+                                <span class="button">${session.username}</span>
+                                <a class="button is-primary" href="/users/logout">Logout</a>
+                                ` : `
+                                <a class="button is-primary" href="/users/login">Login</a>
+                                 <a class="button is-light" href="/users/signup">Signup</a>
+                                `}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </nav>
     ${partial}
 </body>
 
