@@ -2,69 +2,74 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script type="text/x-mathjax-config">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script type="text/x-mathjax-config">
         MathJax.Hub.Config({tex2jax: {
             inlineMath: [ ['$','$'] ], 
             displayMath: [ ['$$','$$'] ]
         }});
       </script>
-    <script type="text/javascript" async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-        </script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <script type="text/javascript" src="/javascripts/header.js"></script>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <title>ICE | ${title}</title>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <script type="text/javascript" src="/javascripts/header.js"></script>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <title>ICE | ${title}</title>
 </head>
 
 <body>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-                <div class="navbar-brand">
-              
-                  <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarC">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                  </a>
-                </div>
-              
-                <div id="navbarC" class="navbar-menu">
-                  <div class="navbar-start">
-                    <a href="/" class="navbar-item">
-                      Home
-                    </a>
-                    
-                    ${session.is_logged_in ? `
-                        <a href="/problem" class="navbar-item">
-                            Problems
-                        </a>
-                        ` : `
-                        
-                        `}
-                  </div>
+  <div id="particles-js"></div>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
 
-                  <div class="navbar-end">
-                    <div class="navbar-item">
-                      <div class="buttons">
-                                ${!!session.is_logged_in ? `
-                                <span class="button">${session.username}</span>
-                                <a class="button is-primary" href="/users/logout">Logout</a>
-                                ` : `
-                                <a class="button is-primary" href="/users/login">Login</a>
-                                 <a class="button is-light" href="/users/signup">Signup</a>
-                                `}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </nav>
-    ${partial}
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarC">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarC" class="navbar-menu">
+      <div class="navbar-start">
+        <a href="/" class="navbar-item">
+          Home
+        </a>
+
+        ${session.is_logged_in ? `
+        <a href="/problem" class="navbar-item">
+          Problems
+        </a>
+        ` : `
+
+        `}
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            ${!!session.is_logged_in ? `
+            <span class="button">${session.username}</span>
+            <a class="button is-primary" href="/users/logout">Logout</a>
+            ` : `
+            <a class="button is-primary" href="/users/login">Login</a>
+            <a class="button is-light" href="/users/signup">Signup</a>
+            `}
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  ${partial}
+  <!-- particles.js lib - https://github.com/VincentGarreau/particles.js -->
+  <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <!-- stats.js lib -->
+  <script type="text/javascript" src="/javascripts/particles.js"></script>
 </body>
 
 </html>
