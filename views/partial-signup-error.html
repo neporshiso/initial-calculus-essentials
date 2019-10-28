@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="columns">
+        <div class="column"></div>
+        <div class="column">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title is-centered">
+                        Sign Up
+                    </p>
+                </header>
+                <div class="card-content">
+                        <article class="message is-danger">
+                            <div class="message-header">
+                                <p>Error</p>
+                            </div>
+                            <div class="message-body">
+                                Please try again. That e-mail is already in use.
+                            </div>
+                        </article>
+                    <form action="/users/signup" method="POST">
+                        <div class="field">
+                            <label class="label">Username (display name)</label>
+                            <input
+                                class="input is-rounded"
+                                type="text"
+                                aria-placeholder="Username"
+                                placeholder="Enter Your Username"
+                                name="username"
+                            />
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <input
+                                class="input is-rounded"
+                                type="email"
+                                aria-placeholder="Email Address"
+                                placeholder="Enter Your Email"
+                                name="email"
+                            />
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Select a Password</label>
+                            <input
+                                class="input is-rounded"
+                                type="password"
+                                aria-placeholder="Set Your Password"
+                                placeholder="Enter Your Password"
+                                name="password"
+                            />
+                        </div>
+                        <div class="field is-grouped is-grouped-centered">
+                            <p class="control">
+                                <button type="submit" class="button is-success">
+                                    Create my Account
+                                </button>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="column"></div>
+    </div>
+</div>
