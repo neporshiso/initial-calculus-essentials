@@ -94,3 +94,7 @@ tr .category_padding {
   display:flex; 
   justify-content: center;
 }
+
+.icon-gray {
+  color: gray;
+}
