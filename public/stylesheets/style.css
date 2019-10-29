@@ -56,6 +56,7 @@ a {
 
 .answer-card,
 .problem-card {
+    min-width: 500px;
     max-width: 800px;
     border: 3px solid #8BE3D2;
     background-color: #f6f6f6;
@@ -70,8 +71,6 @@ a {
 }
 
 .navbar-menu {
-  /* transition: all .5s; */
-  margin-bottom: 50px;
   background-color: #8be3d2;
   border-bottom: 1px black;
 }
@@ -103,4 +102,23 @@ tr .category_padding {
 
 .icon-gray {
   color: gray;
+}
+
+/* PARTICLE JS */
+
+canvas {
+  display: flex;
+  position: relative;
+  vertical-align: bottom;
+} 
+
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #295b6b;
+  background-image: url("");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
 }
