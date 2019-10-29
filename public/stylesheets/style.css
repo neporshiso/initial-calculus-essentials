@@ -73,8 +73,28 @@ a {
   font-size: 20px;
 }
 
+.level>.level-item:not(.is-narrow) {
+  flex-grow: 0;
+}
+
+.level.logins {
+  display: flex;
+  flex-grow: 0;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  height: 80vh;
+}
+
 .sign-up.card {
-  width: 297px;
+  width: 450px;
+}
+
+.login.card {
+  width: 450px;
+}
+
+.container.table_container {
+  margin-top: 20px;
 }
 
 tbody tr {
@@ -116,6 +136,7 @@ tr .category_padding {
 .card-content .content p {
   font-size: 18px;
 }
+
 /* PARTICLE JS */
 
 canvas {
