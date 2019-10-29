@@ -1,5 +1,20 @@
 const db = require("./conn");
 
+function generatePairObject(arr) {
+    let obj = {};
+    if (arr.length % 2 !== 0) {
+        throw new Error('string array must have even length!')
+    }
+    arr.forEach((val, i) => {
+        if ((i % 2) === 0) {
+            obj[val] = null;
+        } else {
+            obj[arr[i - 1]] = val;
+        }
+    });
+    return obj;
+}
+
 class Problem {
     constructor(
         id,
@@ -75,19 +90,24 @@ class Problem {
     // The user needs to input answers with spaces in between values e.g x1 0.5 x2 -3
     // answerCheck evaluates the user's answer from the form submission and evaluates depending upon the problem type and returns a boolean
     static answerCheck(problem_type, problem_answer, user_answer) {
+        console.log(problem_type, problem_answer, user_answer)
+
         const problemAnswerObj = this.convertArrayDataToObj(problem_answer);
-        const userAnswerArray = user_answer.split(" ");
+        const userAnswerArray = problem_type === 'manual_ordered' ? [] : user_answer.split(" ");
         const userAnswerObj = this.convertArrayDataToObj(userAnswerArray);
 
         let evaluation = true;
 
         switch (problem_type) {
             case "manual_ordered":
-                JSON.stringify(problemAnswerObj) ==
-                JSON.stringify(userAnswerObj)
-                    ? (evaluation = true)
-                    : (evaluation = false);
-
+                        let solution = generatePairObject(problem_answer);
+                        
+                        for (let key in solution) {
+                            if (solution[key] !== user_answer[key]) {
+                                evaluation = false;
+                                break;
+                            }
+                        }
                 break;
 
             case "manual_unordered":
@@ -114,7 +134,7 @@ class Problem {
 
             // since truefalse is single value answer, we can use don't have to convert problemAnswerValue. Can just rely on the arguments passed in directly
             case "truefalse":
-                problem_answer == user_answer[0].toUpperCase()
+                evaluation = problem_answer == user_answer[0]
                     ? (evaluation = true)
                     : (evaluation = false);
                 break;

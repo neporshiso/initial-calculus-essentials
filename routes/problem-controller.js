@@ -5,6 +5,21 @@ const problemModel = require("../models/problem-model"),
     userAnswerModel = require("../models/userAnswer-model"),
     categoryModel = require("../models/category-model")
 
+function generatePairObject(arr) {
+    let obj = {};
+    if (arr.length % 2 !== 0) {
+        throw new Error('string array must have even length!')
+    }
+    arr.forEach((val, i) => {
+        if ((i % 2) === 0) {
+            obj[val] = null;
+        } else {
+            obj[arr[i - 1]] = val;
+        }
+    });
+    return obj;
+}
+
 router.get("/", async function(req, res, next) {
     if (req.session.is_logged_in) {
         // const problems = await problemModel.getAll();
@@ -39,6 +54,11 @@ router.get("/:id", async function(req, res, next) {
         const problem = await problemModel.getProblemById(id);
         const totalProblemCount = await problemModel.getTotalProblemCount();
         /* convert to use problem.decode() */
+
+        if (problem.type === 'manual_ordered') {
+            problem.answer_obj = generatePairObject(problem.answer_value);
+        }
+
         console.log("getting problem", problem);
         res.render("template", {
             locals: {
@@ -64,15 +84,16 @@ router.post("/:id", async (req, res, next) => {
     const { user_answer } = req.body;
     const id = req.params.id;
     const user_id = req.session.user_id;
-    
+    // console.log(req.body)
     const problem = await problemModel.getProblemById(id),
         problem_answer = problem.answer_value,
         problem_type = problem.type;
 
+
     const evaluation = await problemModel.answerCheck(
         problem_type,
         problem_answer,
-        user_answer
+        problem_type === 'manual_ordered' ? req.body : user_answer
     );
 
     const userAnswer = new userAnswerModel(
@@ -114,7 +135,7 @@ router.get('/:id/answer', async (req, res, next) => {
     const totalProblemCount = await problemModel.getTotalProblemCount();
     const answerResult = await userAnswerModel.getAnswer(user_id, problem_id);
 
-    console.log("IS THE ANSWER CORRECT? WELL ....", answerResult);
+    console.log("IS THE ANSWER CORRECT? WELL .... ", answerResult);
 
     res.render('template', {
         locals: {
