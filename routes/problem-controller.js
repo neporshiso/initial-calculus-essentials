@@ -114,7 +114,7 @@ router.get('/:id/answer', async (req, res, next) => {
     const totalProblemCount = await problemModel.getTotalProblemCount();
     const answerResult = await userAnswerModel.getAnswer(user_id, problem_id);
 
-    console.log("IS THE ANSWER CORRECT? WELL ....", answerResult);
+    console.log("IS THE ANSWER CORRECT? WELL .... ", answerResult);
 
     res.render('template', {
         locals: {
