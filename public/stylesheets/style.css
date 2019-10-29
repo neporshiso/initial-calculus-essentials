@@ -103,6 +103,11 @@ a {
   margin-top: 20px;
 }
 
+.login-partial-container, 
+.signup-partial-container {
+  margin-top: 50px;
+}
+
 tbody tr {
   cursor: pointer;
 }
