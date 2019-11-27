@@ -1,5 +1,8 @@
 # Initial Calculus Essentials
 
+## Demo
+![Initial Calculus Essentials Demo](/ice.gif)
+
 ## Summary
 
 Initial Calculus Essentials was built to help anyone learning calculus for the first time. Many institutions don't set aside substantial course time for "initial" skill development or review of concepts that should have been addressed in a standard precalculus course.
